@@ -1,0 +1,32 @@
+{
+  "name": "hapi_front",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marb61a/hapi_frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "good": "^7.0.1",
+    "good-console": "^6.1.2",
+    "good-squeeze": "^4.0.0",
+    "handlebars": "^4.0.5",
+    "hapi": "^13.4.1",
+    "hapi-auth-cookie": "^6.1.1",
+    "inert": "^4.0.0",
+    "joi": "^8.4.2",
+    "time-ago": "^0.1.0",
+    "vision": "^4.1.0",
+    "wreck": "^8.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/marb61a/hapi_frontend/issues"
+  },
+  "homepage": "https://github.com/marb61a/hapi_frontend#readme"
+}
