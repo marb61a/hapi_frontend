@@ -1,0 +1,23 @@
+body {
+    padding-top: 70px;
+    background: #eee;
+}
+.navbar .navbar-brand img {
+    margin-top: -4px;
+    margin-right: 5px;
+}
+.navbar-default {
+    background-color: #C7E1F0 !important;
+}
+.navbar-default .navbar-nav>li>a {
+    background: #79b8da;
+    border: 8px solid #C7E1F0;
+    padding: 7px 12px !important;
+    color: #333;
+}
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
+    background: #4FA2CF;
+}
+.navbar-right {
+    margin-right: -10px !important;
+}
