@@ -1,0 +1,29 @@
+<h4 class="text-center margin-20">The best bookmarks on the internet as decided by you</h4>
+
+<div class="view-menu">
+    <span class="menu-title">View: </span>
+    <a class="menu-link" href="/bookmarks?sort=top">Top</a>
+    <a class="menu-link" href="/bookmarks?sort=new">New</a>
+</div>
+
+{{ #each bookmarks}}
+    <div class="sb-bookmark">
+        <div class="top-row">
+            {{ #if }}
+                <a class="vote" href="/bookmarks/{{ id }}/upvote"><i class="fa fa-caret-up" aria-hidden="true"></i></a>
+            {{ else }}
+                <a class="vote" href="/login"><i class="fa fa-caret-up" aria-hidden="true"></i></a>
+            {{ /if }}
+                <a href="{{url}}" class="url" target="_blank"> {{ title}} </a>
+        </div>
+        <div class="bottom-row">
+            <span class="vote-count"> {{ upvotes }}</span>
+            <span class="url-text">{{url}}&nbsp;&mdash;&nbsp;{{timeago created}}</span>
+            {{ #if }}
+                &nbsp;|&nbsp;
+                <a href="/bookmarks/{{id}}/edit" class="action">Edit</a>
+                <a href="/bookmarks/{{id}}/delete" class="action">Delete</a>
+            {{ /if }}
+        </div>
+    </div>
+{{ /each }}
