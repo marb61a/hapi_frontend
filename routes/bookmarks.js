@@ -14,8 +14,37 @@ exports.register = function(server, options, next){
             }
         });
         
-        return next();
-    }    ;
+        return errors;
+    };
+    
+    server.route({
+        method : 'GET',
+        path: '/bookmarks',
+        handler : function(request, reply){
+            const apiUrl = server.settings.app.apiBaseUrl + '/bookmarks?sort=' + request.query.sort;
+            
+            Wreck.get(apiUrl, {
+                json : true
+            }, (err, res, payload) => {
+                if(err){
+                    throw err;
+                }
+                
+                return reply.view('index', {
+                    bookmarks : payload
+                });
+            });
+        },
+        config : {
+            validate : {
+                query : {
+                    sort: Joi.string().valid('top', 'new').default('top')
+                }
+            }
+        }
+    });
+    
+    
 };
 
 exports.register.attributes = {
