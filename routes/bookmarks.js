@@ -44,7 +44,44 @@ exports.register = function(server, options, next){
         }
     });
     
+    server.route({
+        method : 'GET',
+        path : '/bookmarks/add',
+        handler : function(request, reply){
+            return reply.view('form', {
+                edit : false
+            });
+        },
+        config :{
+            auth : 'session'
+        }
+    });
     
+    server.route({
+        method : 'POST',
+        path : '/bookmarks',
+        handler : function(request, reply){
+            const apiUrl = server.settings.app.apiBaseUrl + '/bookmarks';
+            const token = request.auth.credentials.token;
+            
+            Wreck.post(apiUrl, {
+                payload : JSON.stringify(request.payload),
+                json : true,
+                headers : {
+                    'Authorization': 'Bearer ' + token
+                }
+            }, (err, res, payload) => {
+                if(err){
+                    throw err;
+                }
+                
+                return reply.redirect('/bookmarks');
+            });
+        },
+        config : {
+            
+        }
+    });
 };
 
 exports.register.attributes = {
