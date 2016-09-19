@@ -30,5 +30,36 @@ server.register([{
             }, 'stdout']
         }
     }
+}, {
+    register: require('inert')
+}, {
+    register: require('vision')
+}, {
+    register: require('hapi-auth-cookie')
+}, {
+    register: require('./plugins/error')
+}, {
+    register: require('./plugins/auth')
+}, {
+    register: require('./routes/bookmarks')
+}, {
+    register: require('./routes/auth')
+}], (err) => {
+    if(err){
+        throw err;
+    }
+    
+    // Serve static assets(images, css, js)
+    server.route({
+        method: 'GET',
+        path: '/{param*}',
+        handler: {
+            directory: {
+                path: './public',
+                redirectToSlash: true
+            }
+        }
+    });
 }
-]);
+
+);
