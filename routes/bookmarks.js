@@ -79,7 +79,36 @@ exports.register = function(server, options, next){
             });
         },
         config : {
+            auth : 'session',
+            validate :{
+                payload : {
+                    title : Joi.string().min(1).max(100).required(),
+                    url : Joi.string().uri().required
+                },
+                options : {
+                    abortEarly : false
+                },
+                failAction : function(request, reply, source, error){
+                    const errors = _extractErrorDetails(error);
+                    
+                    return reply.view('form', {
+                        errors : errors,
+                        values : request.payload,
+                        edit : false
+                    }).code(400);
+                }
+            }
+        }
+    });
+    
+    server.route({
+        method : 'GET',
+        path :'/bookmarks/{id}/edit',
+        handler : function(request, reply){
             
+        },
+        config : {
+            auth : 'session'
         }
     });
 };
