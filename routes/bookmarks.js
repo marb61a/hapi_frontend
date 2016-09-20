@@ -105,7 +105,19 @@ exports.register = function(server, options, next){
         method : 'GET',
         path :'/bookmarks/{id}/edit',
         handler : function(request, reply){
+            const apiUrl = server.settings.app.apiBaseUrl + '/bookmarks/' + request.params.id;
             
+            Wreck.get(apiUrl, {
+                json : true
+            }, (err, res, payload) => {
+                if(err){
+                    throw err;
+                }
+                return reply.view('form', {
+                    values: payload,
+                    edit: true
+                });
+            });
         },
         config : {
             auth : 'session'
