@@ -60,6 +60,32 @@ server.register([{
             }
         }
     });
+    
+    // Use Handlebars as the templating engine
+    server.views({
+        engines : {
+            hbs : require("handlebars")
+        },
+        relativeTo : __dirname,
+        path : './templates',
+        helpersPath: './templates/helpers',
+        layoutPath: './templates/layouts',
+        layout: true,
+        isCached: false, //Should be true in production
+        context: (request) => {
+            return {
+                user: request.auth.credentials
+            };
+        }
+    });
+    
+    // Redirect / => /bookmarks
+    server.route({
+        method: 'GET',
+        path: '/',
+        handler: function (request, reply) {
+            return reply.redirect('/bookmarks');
+        }
+    });
 }
-
 );
