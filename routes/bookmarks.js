@@ -123,6 +123,53 @@ exports.register = function(server, options, next){
             auth : 'session'
         }
     });
+    
+    server.route({
+        method : 'POST',
+        path : '/bookmarks/id',
+        handler : function(request, reply){
+            const apiUrl = server.settings.app.apiBaseUrl + '/bookmarks/' + request.params.id;
+            const token = request.auth.credentials.token;
+            
+            Wreck.patch(apiUrl, {
+                payload : JSON.stringify(request.payload),
+                json : true,
+                headers : {
+                    'Authorization' : 'Bearer ' + token
+                }
+            }, (err, res, payload) => {
+                if (err) {
+                    throw err;
+                }
+
+                return reply.redirect('/bookmarks');
+            });
+        },
+        config : {
+            auth : 'session',
+            validate : {
+                payload : {
+                    title: Joi.string().min(1).max(100).required(),
+                    url: Joi.string().uri().required()
+                },
+                options : {
+                    abortEarly : false
+                },
+                failAction : function(request, reply, source, error){
+                    const errors = _extractErrorDetails(error);
+                    const values = request.payload
+                    
+                    values.id = request.params.id;
+                    
+                    return reply.view('form', {
+                            errors: errors,
+                            values: values,
+                            edit: true
+                        }).code(400);
+                }
+            }
+        }
+    });
 };
 
 exports.register.attributes = {
