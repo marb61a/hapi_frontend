@@ -170,6 +170,31 @@ exports.register = function(server, options, next){
             }
         }
     });
+    
+    server.route({
+        method  : 'GET',
+        path : '/bookmarks/{id}/delete',
+        handler : function(request, reply){
+            const apiUrl = server.settings.app.apiBaseUrl + '/bookmarks/' + request.params.id;
+            const token = request.auth.credentials.token;
+            
+            Wreck.delete(apiUrl, {
+                json : true,
+                headers : {
+                    'Authorization' : 'Bearer ' + token
+                },
+            }, (err, res, payload) => {
+                if(err){
+                    throw err;
+                }
+                
+                return reply.redirect('/bookmarks');
+            });
+        },
+        config : {
+            auth : 'session'
+        }
+    });
 };
 
 exports.register.attributes = {
