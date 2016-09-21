@@ -1,0 +1,24 @@
+<div class="sb-form">
+    <h4>
+        {{ #if edit }}
+            Edit Bookmark
+        {{ else }}
+            Add a New Bookmark
+        {{ /if }}
+    </h4>
+    
+    <hr/>
+    
+    {{ #if errors }}
+        <div class="bg-danger padding-10">
+            {{ #each errors }}
+                <p>{{this}}</p>
+            {{ /each }}
+        </div>
+    {{ /if }}
+    
+    <form method="POST" action="">
+        
+    </form>
+    
+</div>
