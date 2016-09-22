@@ -21,3 +21,80 @@ body {
 .navbar-right {
     margin-right: -10px !important;
 }
+
+.margin-20{
+    margin: 20px 0 25px 0;    
+}
+
+.padding-10{
+    padding:10px;
+}
+
+.view-menu{
+    background: #f8f8f8;
+    padding: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.view-menu .menu-link {
+    color: inherit !important;
+    margin: 0 4px;
+}
+
+.view-menu .menu-link:hover {
+    text-decoration: underline;
+}
+
+.view-menu .menu-title {
+    margin-right: 8px;
+}
+
+.sb-form {
+    max-width: 500px;
+    background: #fff;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.sb-bookmark {
+    background: #fff;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.sb-bookmark .vote {
+    color: inherit !important;
+    margin-right: 10px;
+}
+
+.sb-bookmark .vote-count {
+    font-weight: bold;
+    margin-right: 13px;
+}
+
+.sb-bookmark .url {
+    font-weight: bold;
+}
+
+.sb-bookmark .top-row {
+    font-size: 120%;
+}
+
+.sb-bookmark .url-text {
+    color: #888;
+}
+
+.sb-bookmark .bottom-row {
+    font-size: 90%;
+}
+
+.sb-bookmark .action {
+    color: #888;
+    margin: 0 3px;
+
+    
+}
+.sb-bookmark .action:hover {
+    text-decoration: underline;
+}
