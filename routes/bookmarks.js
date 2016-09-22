@@ -195,6 +195,33 @@ exports.register = function(server, options, next){
             auth : 'session'
         }
     });
+    
+    server.route({
+        method : 'GET',
+        path : '/bookmarks/{id}/upvote',
+        handler : function(request, reply){
+            const apiUrl = server.settings.app.apiBaseUrl + '/bookmarks/' + request.params.id + '/upvote';
+            const token = request.auth.credentials.token;
+            
+            Wreck.post(apiUrl, {
+                json : true,
+                headers : {
+                    'Authorization' : 'Bearer ' + token    
+                }
+            }, (err, res, payload) => {
+                if(err){
+                    throw err;
+                }
+                
+                return reply.redirect('/bookmarks');
+            });
+        },
+        config : {
+            auth : 'session'
+        }
+    });
+    
+    return next();
 };
 
 exports.register.attributes = {

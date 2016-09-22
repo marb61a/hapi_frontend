@@ -3,7 +3,7 @@
 const Hapi = require("hapi");
 
 // Create a server and a connection 
-const server = new  Hapi.server({
+const server = new Hapi.server({
     app : {
         apiBaseUrl: 'http://localhost:3000'
     }
