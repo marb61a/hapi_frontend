@@ -17,8 +17,26 @@
         </div>
     {{ /if }}
     
-    <form method="POST" action="">
+    <form method="POST" action="{{#if edit}}/bookmarks/{{values.id}}{{else}}/bookmarks{{/if}}">
+        <div class="form-group {{#if errors.title}}has-error{{/if}}">
+            <label for="inputTitle">Title</label>
+            <input type="text" class="form-control" id="inputTitle" placeholder="Title" name="title" value="{{values.title}}">
+        </div>
         
+        <div class="form-group {{#if errors.url}}has-error{{/if}}">
+            <label for="inputUrl">URL</label>
+            <input type="text" class="form-control" id="inputUrl" placeholder="Url" name="url" value="{{values.url}}">    
+        </div>
+        
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">
+                {{#if edit}}
+                    Edit bookmark
+                {{else}}
+                    Add bookmark
+                {{/if}}
+            </button>
+        </div>
     </form>
     
 </div>

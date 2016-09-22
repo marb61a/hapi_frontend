@@ -3,7 +3,7 @@
 exports.register = function (server, options, next) {
 
     server.auth.strategy('session', 'cookie', 'optional', {
-        password: '',
+        password: 'abcd1234',
         isSecure: false
     });
 

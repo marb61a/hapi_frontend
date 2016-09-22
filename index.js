@@ -2,15 +2,16 @@
 
 const Hapi = require("hapi");
 
+
 // Create a server and a connection 
-const server = new Hapi.server({
+const server = new Hapi.Server({
     app : {
-        apiBaseUrl: 'http://localhost:3000'
+        apiBaseUrl: process.env.PORT //'http://localhost:3000'
     }
 });
 
 server.connection({
-    port : 4000
+    port : process.env.PORT
 });
 
 // Register good plugin and start the server
